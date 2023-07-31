@@ -1,0 +1,20 @@
+### EndPoints ###
+V1
+
+Cidades (Privado)
+GET /cidades   Busca uma lista de cidades, com paginação e filtro por nome
+GET /cidades/{id}   Busca uma cidade pelo id
+POST /cidades   Cria uma nova cidade
+PUT /cidades/{id}   Atualiza uma cidade pelo id
+DELETE /cidades/{id}   Deleta uma cidade pelo id
+
+Pessoas (Privado)
+GET /pessoas   Busca uma lista de pessoas, com paginação e filtro por nome
+GET /pessoas/{id}   Busca uma pessoa pelo id
+POST /pessoas   Cria uma nova pessoa
+PUT /pessoas/{id}   Atualiza uma pessoa pelo id
+DELETE /pessoas/{id}   Deleta uma pessoa pelo id
+
+Login (Público)
+POST /login   Autentica um usuário e retorna um token JWT
+POST /cadastro  Permite cadastro um novo usuário e retorna um token JWT
