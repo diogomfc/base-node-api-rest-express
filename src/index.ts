@@ -1,8 +1,8 @@
-import {server} from './server/server';
+import {server} from './server/Server';
 
 server.listen({
   host: '0.0.0.0',
-  port: 3333
+  port: process.env.PORT || 3333,
 }, () => {
   console.log('🚀 Server ready!');
 });

@@ -18,3 +18,4 @@ DELETE /pessoas/{id}   Deleta uma pessoa pelo id
 Login (Público)
 POST /login   Autentica um usuário e retorna um token JWT
 POST /cadastro  Permite cadastro um novo usuário e retorna um token JWT
+

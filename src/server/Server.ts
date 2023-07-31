@@ -1,10 +1,14 @@
 import express from 'express';
 
+import 'dotenv/config';
+
+import {router} from './routes';
+
 const server = express();
 
-server.get('/', (_, res) => {
-  res.send('Hello World!');
-});
+//usar as rotas do arquivo routes.ts
+server.use(router);
+server.use(express.json());
 
 
 export {server};
