@@ -1,22 +1,21 @@
 import {Router} from 'express';
 import {StatusCodes} from 'http-status-codes';
 
+import { CidadeController } from '../controllers';
+
 const router = Router();
 
-
-router.get('/', (_, res) => {
-  try{
-    res.send('Hello World');
-  } catch(err){
-    console.log(err);
-  }
-
+//Rota de teste
+router.get('/', (req, res) => {
+  res.status(StatusCodes.OK).send({
+    message: 'Hello World!'
+  });
 });
 
-router.post('/teste', (req, res) => {
-  console.log(req.body);
-  return res.status(StatusCodes.CREATED).send();
-});
+//Rota para criar uma cidade
+router.post('/cidades', CidadeController.create);
+
+
 
 
 export {router};
