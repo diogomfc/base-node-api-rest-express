@@ -6,7 +6,7 @@ import {router} from './routes';
 
 const server = express();
 
-//usar as rotas do arquivo routes.ts
+//usar as rotas do arquivo routes.ts no server
 server.use(router);
 server.use(express.json());
 
