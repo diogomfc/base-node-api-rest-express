@@ -1,7 +1,7 @@
 import * as create from './Create';
-import * as add from './Add';
+import * as getAll from './GetAll';
 
 export const CidadeController = {
   ...create,
-  ...add,
+  ...getAll
 };

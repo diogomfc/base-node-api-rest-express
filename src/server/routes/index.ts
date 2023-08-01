@@ -13,6 +13,9 @@ router.get('/', (_, res) => {
 });
 
 //Rota para criar uma cidade
-router.post('/cidades', CidadeController.createValidation, CidadeController.add);
+router.post('/cidades', CidadeController.createValidation, CidadeController.create);
+
+//Rota para listar todas as cidades
+router.get('/cidades', CidadeController.createValidation, CidadeController.getAll);
 
 export {router};
