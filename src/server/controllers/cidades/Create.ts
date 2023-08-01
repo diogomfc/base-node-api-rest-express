@@ -1,28 +1,38 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
+import * as yup from 'yup';
 
-interface CidadeController {
+interface ICidade {
   nome: string;
-  estado: string;
 }
 
-export const create = async (req: Request<{},{}, CidadeController>, res: Response) => {
-  try{
-    const data: CidadeController = req.body;
+const bodyValidation: yup.ObjectSchema<ICidade> = yup.object().shape({
+  nome: yup.string().required().min(3),
+});
 
+export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
+  let validatedData: ICidade | undefined = undefined;
 
-  } catch(err){
-    console.log(err);
+  try {
+    validatedData = await bodyValidation.validate(req.body,{abortEarly: false});
+  } catch (error) {
+    const yupError = error as yup.ValidationError;
+    const validationErrors: Record<string, string> = {};
+
+    if (yupError.inner.length > 0) {
+      yupError.inner.forEach((error) => {
+        if (error.path) {
+          validationErrors[error.path] = error.message;
+        }
+      });
+    }
+
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      errors: validationErrors
+    });
   }
+
+  console.log(validatedData);
+
+  return res.send('Create Create!');
 };
-
-
-// export const Create = async (req, res) => {
-//   const {nome, estado} = req.body;
-//   const {Cidade} = req.context.models;
-//   const cidade = await Cidade.create({
-//     nome,
-//     estado
-//   });
-//   return res.send(cidade);
-// };

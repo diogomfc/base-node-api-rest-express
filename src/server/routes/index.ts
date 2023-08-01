@@ -6,7 +6,7 @@ import { CidadeController } from '../controllers';
 const router = Router();
 
 //Rota de teste
-router.get('/', (req, res) => {
+router.get('/', (_, res) => {
   res.status(StatusCodes.OK).send({
     message: 'Hello World!'
   });
@@ -14,8 +14,5 @@ router.get('/', (req, res) => {
 
 //Rota para criar uma cidade
 router.post('/cidades', CidadeController.create);
-
-
-
 
 export {router};
