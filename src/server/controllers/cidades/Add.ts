@@ -1,15 +1,18 @@
-import { Request, Response } from 'express';
+import { Request, RequestHandler, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { object, string, ObjectSchema, ValidationError } from 'yup';
 
+// Interface da cidade
 interface ICidade {
   nome: string;
 }
 
+// Schema de validação
 const citySchema: ObjectSchema<ICidade> = object().shape({
   nome: string().required().min(3),
 });
 
+// Método para tratar os erros de validação
 const handleValidationErrors = (error: ValidationError) => {
   const validationErrors: Record<string, string> = {};
 
@@ -24,12 +27,12 @@ const handleValidationErrors = (error: ValidationError) => {
   return validationErrors;
 };
 
-export const add = async (req: Request<{}, {}, ICidade>, res: Response) => {
+// Middleware de validação
+export const createBodyValidation: RequestHandler = async (req, res, next) => {
   try {
     const { body } = req;
-    const validatedData = await citySchema.validate(body, { abortEarly: false });
-    console.log(validatedData);
-    return res.send('Create Create!');
+    await citySchema.validate(body, { abortEarly: false });
+    next();
   } catch (error) {
     const yupError = error as ValidationError;
     const validationErrors = handleValidationErrors(yupError);
@@ -38,3 +41,12 @@ export const add = async (req: Request<{}, {}, ICidade>, res: Response) => {
     });
   }
 };
+
+//Método para adicionar uma cidade
+export const add = async (req: Request<{}, {}, ICidade>, res: Response) => {
+  const { body } = req;
+  console.log(body);
+  return res.send('Create Create!');
+};
+
+

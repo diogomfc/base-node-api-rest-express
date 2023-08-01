@@ -13,6 +13,6 @@ router.get('/', (_, res) => {
 });
 
 //Rota para criar uma cidade
-router.post('/cidades', CidadeController.create);
+router.post('/cidades', CidadeController.createBodyValidation, CidadeController.add);
 
 export {router};
