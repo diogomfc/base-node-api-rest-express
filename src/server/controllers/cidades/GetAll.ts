@@ -18,7 +18,7 @@ const citySchema: ObjectSchema<IQueryProps> = object().shape({
 });
 
 // Middleware de validação
-export const createValidation = validation({
+export const getAllValidation = validation({
   query: citySchema,
 });
 

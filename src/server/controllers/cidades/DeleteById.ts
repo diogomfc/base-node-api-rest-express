@@ -14,12 +14,12 @@ const citySchema: ObjectSchema<IParamProps> = object().shape({
 });
 
 // Middleware de validação
-export const getByIdValidation = validation({
+export const deleteByIdValidation = validation({
   params: citySchema,
 });
 
 //Método para listar todas as cidades
-export const getById = async (req: Request<IParamProps>, res: Response) => {
+export const deleteById = async (req: Request<IParamProps>, res: Response) => {
   const { params } = req;
   console.log(params);
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não implementado!');
