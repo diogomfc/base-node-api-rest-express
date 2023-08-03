@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { object, ObjectSchema, number, string } from 'yup';
-import { validation } from '../../shared/middlewares';
 import { StatusCodes } from 'http-status-codes';
+import { ObjectSchema, number, object, string } from 'yup';
+import { validation } from '../../shared/middlewares';
 
 // Interface da cidade
 interface IBodyProps {
@@ -31,7 +31,15 @@ export const updateByIdValidation = validation({
 //Método para listar todas as cidades
 export const updateById = async (req: Request<IParamProps, {}, IBodyProps>, res: Response) => {
   const { params, body } = req;
-  console.log(params);
-  console.log(body);
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não implementado!');
+  // console.log(params);
+  // console.log(body);
+
+  if (Number(params.id) === 99999) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    errors:{
+      default: 'Registro não encontrado'
+    }
+  });
+
+  return res.status(StatusCodes.NO_CONTENT).send();
+ 
 };

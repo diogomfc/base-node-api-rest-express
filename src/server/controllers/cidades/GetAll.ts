@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { object, string, ObjectSchema, ValidationError, number } from 'yup';
-import { validation } from '../../shared/middlewares';
 import { StatusCodes } from 'http-status-codes';
+import { ObjectSchema, number, object, string } from 'yup';
+import { validation } from '../../shared/middlewares';
 
 // Interface da cidade
 interface IQueryProps {
@@ -25,6 +25,16 @@ export const getAllValidation = validation({
 //Método para listar todas as cidades
 export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Response) => {
   const { query } = req;
-  console.log(query);
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não implementado!');
+  
+  res.setHeader('access-control-expose-headers', 'X-Total-Count');
+  res.setHeader('X-Total-Count', 1);
+
+  return res.status(StatusCodes.OK).json(
+    [
+      {
+        id: 1,
+        nome: 'São Paulo',
+      },
+    ]
+  );
 };

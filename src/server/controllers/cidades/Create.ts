@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { object, string, ObjectSchema, ValidationError } from 'yup';
-import { validation } from '../../shared/middlewares';
 import { StatusCodes } from 'http-status-codes';
+import { ObjectSchema, object, string } from 'yup';
+import { validation } from '../../shared/middlewares';
 
 // Interface da cidade
 interface ICidade {
@@ -20,7 +20,7 @@ export const createValidation = validation({
 //Método para adicionar uma cidade
 export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
   const { body } = req;
-  console.log(body);
+  //console.log(body);
   //return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não implementado!');
   return res.status(StatusCodes.CREATED).json(1);
 };

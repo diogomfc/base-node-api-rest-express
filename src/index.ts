@@ -1,4 +1,4 @@
-import {server} from './server/Server';
+import { server } from './server/Server';
 
 server.listen({
   host: '0.0.0.0',

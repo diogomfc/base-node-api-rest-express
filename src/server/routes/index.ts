@@ -1,5 +1,5 @@
-import {Router} from 'express';
-import {StatusCodes} from 'http-status-codes';
+import { Router } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
 import { CidadeController } from '../controllers';
 
@@ -27,4 +27,4 @@ router.put('/cidades/:id', CidadeController.updateByIdValidation, CidadeControll
 //Rota para DELETAR uma cidade pelo id
 router.delete('/cidades/:id', CidadeController.deleteByIdValidation, CidadeController.deleteById);
 
-export {router};
+export { router };
