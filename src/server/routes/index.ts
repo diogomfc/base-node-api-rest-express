@@ -8,7 +8,7 @@ const router = Router();
 //Rota de teste
 router.get('/', (_, res) => {
   res.status(StatusCodes.OK).send({
-    message: 'Hello World!'
+    message: 'Api de teste para estudos.'
   });
 });
 
